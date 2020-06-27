@@ -1,0 +1,205 @@
+{% load static %}
+<html>
+    <head>
+        <title>Manga Geek</title>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="{% static 'Imp/css/bootstrap.min.css' %}" type="text/css"/>
+<!--        <script type="text/javascript" src="{% static 'js/jquery.slim.min.js' %}"></script>-->
+<!--        <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>-->
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.5.0.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="{% static 'Imp/js/bootstrap.bundle.min.js'%}"></script>
+        <link rel="stylesheet" type="text/css" href="{% static 'Css/main.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  </head>
+
+<body>
+<div class = "bg">
+      <!-- Navigation -->
+      <div class="navigationbar">
+        <nav class="navbar navbar-expand-lg fixed-top text-center">
+          <a class="navbar-brand" href="home">
+            <img src="{% static 'images/mg1.png' %}" height="40" alt="">
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fa fa-bars" style="color:rgb(95, 72, 228);"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="col-sm-7" id="nav-search" >
+              <form id="searchbar" class="navbar-form navbar-left my-2 my-lg-0 ml-auto" method="post">
+                {% csrf_token %}
+                <input type="text" class="form-control" id= "search" name="search" placeholder="Search Manga" autocomplete="off">
+              </form>
+              <ul class="list-group-item" id="search-results" hidden="true"> </ul>
+            </div>
+                    <ul class="navbar-nav mr-auto navbar-center">
+                        <!-- <li class="nav-item">
+                          <a class="nav-link" href="Home.html">Home</a>
+                        </li> -->
+                          <li class="nav-item">
+                            <a class="nav-link"  href="manganews">Manga News</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link " href="allmanga">All Manga</a>
+                          </li>
+                      {% if request.user.is_authenticated %}
+                           <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              {{user}} &nbsp; <img src="static/databaseimage/{{ user.tbluser.profilephoto }}" width="30" height="30" class="rounded-circle">
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                              <a class="dropdown-item" href="/user">Dashboard</a>
+                              <a class="dropdown-item" href="/useredit">Edit Profile</a>
+                              <a class="dropdown-item " href="/userlogout">Log Out</a>
+                            </div>
+                          </li>
+                      {% else %}
+                      <li class="nav-item">
+                            <a class="nav-link " href="/login">Sign In</a>
+                          </li>
+                      {% endif %}
+                     </ul>
+            </div>
+        </nav>
+        </div>
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-9 col-md-7 col-lg-6 mx-auto">
+                  <div class="card card-signin my-5">
+                    <div class="card-body">
+                      <h5 class="card-title text-center"><b><u>REQUEST</u></b></h5>
+                      <form class="form-review" method="post" action="/userrequest" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="exampleInputEmail1"><b>Email address</b></label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email" required>
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                          </div>
+                          <div class="form-group">
+                            <label for="exampleInputEmail1"><b>Manga Name</b></label>
+                            <input type="text" class="form-control" placeholder="Manga Name" name="manganame" required>
+                          </div>
+                          <div class="form-group">
+                            <label for="exampleFormControlFile1"><b>Refrence for Manga(i.e,Image)</b></label>
+                            <input type="file" class="form-control-file" id="exampleFormControlFile1" name="file" required>
+                          </div>
+                        <div class="form-group">
+                            <label for="comment"><b>Tell us something about this manga.</b></label>
+                            <textarea class="form-control" rows="8" id="comment" name="description" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-outline-dark">Request</button>
+                        <!-- <a text-align="left" href="request.html">Show other Request</a>  -->
+                    </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<script  src="{% static 'js/ajax.js'%}" type="text/javascript"></script>
+  </body>
+
+
+            <!-- Footer -->
+      <footer>
+        <footer class="footer">
+            <div class="col-md-12">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-3 m-b-30">
+                <div class="footer-title m-t-5 m-b-20 p-b-8">
+                  About us
+                </div>
+                <p class="white-text">
+                  Manga Geek is a ad free manga reader Online for all the Manga Fans Out there.
+                </p>
+              </div>
+              <div class="col-md-3 m-b-30">
+                <div class="footer-title m-t-5 m-b-20 p-b-8">
+                  Popular
+                </div>
+                <div class="footer-links">
+                  <a href="singlemanga/1">
+                    Naruto
+                  </a>
+                  <a href="singlemanga/2">
+                    One Piece
+                  </a>
+                  <a href="singlemanga/6">
+                    Bleach
+                  </a>
+                  <a href="singlemanga/10">
+                    Hunter X Hunter
+                  </a>
+                </div>
+              </div>
+              <div class="col-md-3 m-b-30">
+                <div class="footer-title m-t-5 m-b-20 p-b-8">
+                  Quick Links
+                </div>
+                <div class="footer-links">
+                  <a href="/allmanga">
+                    All Manga
+                  </a>
+                  <a href="/manganews">
+                    News
+                  </a>
+                  <a href="/terms">
+                    Terms & conditions
+                  </a>
+                  <a href="/privacy">
+                    Privacy policy
+                  </a>
+                </div>
+              </div>
+              <div class="col-md-3 m-b-30">
+                <div class="footer-title m-t-5 m-b-20 p-b-8">
+                  Support
+                </div>
+                <div class="footer-links">
+                  {% if request.user.is_authenticated %}
+                  <a href="/userlogout"> Logout </a>
+                  {% else %}
+                  <a href="/login">
+                    Login
+                    {% endif %}
+                  </a>
+                </div>
+                <div class="footer-links">
+                  <a href="/request">
+                    Request
+                  </a>
+                </div>
+                <div class="footer-links">
+                  <a href="/userrequested">
+                    User Project
+                  </a>
+                </div>
+
+                <div class="footer-social-links m-t-30">
+                  <li>
+                    <a href="https://www.facebook.com/" target="_blank">
+                      <i class="fa fa-facebook" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://twitter.com" target="_blank">
+                      <i class="fa fa-twitter" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://www.instagram.com/" target="_blank">
+                      <i class="fa fa-instagram" aria-hidden="true"></i>
+                    </a>
+                  </li>
+                </div>
+              </div>
+            </div>
+          </div>
+            </div>
+          </footer>
+        <div class="footer-bottom">
+          Copyright © 2020, All Rights Reserved
+        </div>
+            </div>
+        </div>
+      </div>
+      </footer>
+      </html>

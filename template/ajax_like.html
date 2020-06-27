@@ -1,0 +1,21 @@
+<div class="row mt-2">
+<div class="col-sm-3">
+{{ total_likes }} Like{{total_likes|pluralize}}
+</div>
+<div class="col-sm-2">
+{% if request.user.is_authenticated %}
+<form action="/likes" method="post">
+    {% csrf_token %}
+    <!-- {% if is_liked %} -->
+    <button type="submit" id='like' name="comic_id" value="{{ manga_single.id }}" class="btn btn-danger">
+        <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
+    </button>
+    <!-- {% else %} -->
+    <button type="submit" id='like' name="comic_id" value="{{ manga_single.id }}" class="btn btn-primary">
+        <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+    </button>
+    <!-- {% endif %} -->
+</form>
+{% endif %}
+</div>
+</div>

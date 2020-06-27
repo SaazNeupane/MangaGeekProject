@@ -1,0 +1,483 @@
+{% load static %}
+<html>
+    <head>
+        <title>Manga Geek</title>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="{% static 'Imp/css/bootstrap.min.css' %}" type="text/css"/>
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.5.0.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="{% static 'Imp/js/bootstrap.bundle.min.js'%}"></script>
+        <link rel="stylesheet" type="text/css" href="{% static 'Css/main.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  
+<body>
+<div class = "bg">
+      <!-- Navigation -->
+      <div class="navigationbar">
+        <nav class="navbar navbar-expand-lg fixed-top text-center">
+          <a class="navbar-brand" href="home">
+            <img src="{% static 'images/mg1.png' %}" height="40" alt="">
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fa fa-bars" style="color:rgb(95, 72, 228);"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="col-sm-7" id="nav-search" >
+              <form id="searchbar" class="navbar-form navbar-left my-2 my-lg-0 ml-auto" method="post">
+                {% csrf_token %}
+                <input type="text" class="form-control" id= "search" name="search" placeholder="Search Manga">
+                </form>
+              <ul class="list-group-item" id="search-results" hidden="true">
+
+                          </ul>
+            </div>
+
+                    <ul class="navbar-nav mr-auto navbar-center">
+                        <!-- <li class="nav-item">
+                          <a class="nav-link" href="Home.html">Home</a>
+                        </li> -->
+                          <li class="nav-item">
+                            <a class="nav-link"  href="manganews">Manga News</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link " href="allmanga">All Manga</a>
+                          </li>
+                          {% if request.user.is_authenticated %}
+                          <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              {{user}} &nbsp; <img src="static/databaseimage/{{ user.tbluser.profilephoto }}" width="35" height="35"
+                                class="rounded-circle">
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"
+                              style="background-color:rgb(95, 72, 228);">
+                              <a style="color:white;" class="dropdown-item" href="/user">Dashboard</a>
+                              <a style="color:white;" class="dropdown-item" href="/useredit">Edit Profile</a>
+                              <a style="color:white;" class="dropdown-item " href="/userlogout">Log Out</a>
+                            </div>
+                          </li>
+                          {% else %}
+                          <li class="nav-item">
+                            <a class="nav-link " href="/login">Sign In</a>
+                          </li>
+                          {% endif %}
+                     </ul>
+            </div>
+
+        </nav>
+        </div>
+      <!-- Page Content -->
+  <div class="container">
+        <!-- Jumbotron Header -->
+        <header class="jumbotron my-4">
+          <a class="logo">
+            <img src="{% static 'images/mg.png' %}" width="150" height="150" alt="logo" class="rounded mx-auto d-block">
+          </a>
+          <h1 class="display-3"><b>A Warm Welcome!</b></h1>
+          <p class="lead">Manga Geek is a place where all the manga lovers can read their favorite manga for free without any ads. </p>
+          <a href="allmanga" class="btn btn-primary btn-lg">Start</a>
+        </header>
+        <div class="rang">
+          <h1 class="my-4"><b>Latest Update</b><br>
+          </h1>
+        </div>
+
+        
+        <!--Carousel Wrapper-->
+        <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
+    
+          <!--Controls-->
+          <div class="controls-top">
+            <a class="carousel-control-prev" href="#multi-item-example" role="button" data-slide="prev">
+              <span class="sr-only">Previous</span>
+            </a>
+        <a class="carousel-control-next" href="#multi-item-example" role="button" data-slide="next">
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+          <!--/.Controls-->
+
+    
+          <!--Slides-->
+          <div class="carousel-inner" role="listbox">
+    
+            <!--First slide-->
+            <div class="carousel-item active">
+    
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="card mb-2">
+                    <img class="card-img-top" src="{% static 'images/home/naruto.jpg' %}"
+                      alt="Card image cap">
+                      <div class="card-body">
+                        <h4 class="card-title text-center"><b>Naruto</b></h4>
+                        <p class="card-text"><ul>
+                          <li>Volume:361</li>
+                          <li>Volume:362</li>
+                          &nbsp;
+                        </ul></p>
+                          <div class="rang">
+                            <a href="singlemanga/1" class="btn btn-primary">Read</a>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+    
+                <div class="col-md-4 clearfix d-none d-md-block">
+                  <div class="card mb-2">
+                    <img class="card-img-top" src="{% static 'images/home/onepunch.jpg'%}"
+                      alt="Card image cap">
+                      <div class="card-body">
+                        <h4 class="card-title text-center"><b>One Punch-Man</b></h4>
+                        <p class="card-text"><ul>
+                          &nbsp;
+                          <li>Volume:89</li>
+                          &nbsp;
+                        </ul></p>
+                          <div class="rang">
+                            <a href="singlemanga/12" class="btn btn-primary">Read</a>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+    
+                <div class="col-md-4 clearfix d-none d-md-block">
+                  <div class="card mb-2">
+                    <img class="card-img-top" src="{% static 'images/home/hunter.jpg' %}"
+                      alt="Card image cap">
+                      <div class="card-body">
+                        <h4 class="card-title text-center"><b>Hunter X hunter</b></h4>
+                        <p class="card-text"><ul>
+                          <li>Volume:365</li>
+                          <li>Volume:366</li>
+                          <li>Volume:367</li>
+                        </ul></p>
+                          <div class="rang">
+                            <a href="singlemanga/10" class="btn btn-primary">Read</a>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+    
+            </div>
+            <!--/.First slide-->
+    
+            <!--Second slide-->
+            <div class="carousel-item">
+    
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="card mb-2">
+                    <img class="card-img-top" src="{% static 'images/home/haikyuu.jpg' %}"
+                      alt="Card image cap">
+                      <div class="card-body">
+                        <h4 class="card-title text-center"><b>Haikyuu</b></h4>
+                        <p class="card-text"><ul>
+                          &nbsp;
+                          <li>Volume:251</li>
+                          &nbsp;
+                        </ul></p>
+                          <div class="rang">
+                            <a href="singlemanga/9" class="btn btn-primary">Read</a>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+    
+                <div class="col-md-4 clearfix d-none d-md-block">
+                  <div class="card mb-2">
+                    <img class="card-img-top" src="{% static 'images/home/blackclover.jpg' %}"
+                      alt="Card image cap">
+                      <div class="card-body">
+                        <h4 class="card-title text-center"><b>Black Clover</b></h4>
+                        <p class="card-text"><ul>
+                          <li>Volume:154</li>
+                          <li>Volume:155</li>
+                          &nbsp;
+                        </ul></p>
+                          <div class="rang">
+                            <a href="singlemanga/5" class="btn btn-primary">Read</a>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+    
+                <div class="col-md-4 clearfix d-none d-md-block">
+                  <div class="card mb-2">
+                    <img class="card-img-top" src="{% static 'images/home/attackontitan.jpg' %}"
+                      alt="Card image cap">
+                      <div class="card-body">
+                        <h4 class="card-title text-center"><b>Attack on Titan</b></h4>
+                        <p class="card-text"><ul>
+                          <li>Volume:168</li>
+                          <li>Volume:169</li>
+                          <li>Volume:170</li>
+                        </ul></p>
+                          <div class="rang">
+                            <a href="singlemanga/4" class="btn btn-primary">Read</a>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+    
+            </div>
+            <!--/.Second slide-->
+    
+            <!--Third slide-->
+            <div class="carousel-item">
+    
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="card mb-2">
+                    <img class="card-img-top" src="{% static 'images/home/vinland.jpg' %}"
+                      alt="Card image cap">
+                      <div class="card-body">
+                        <h4 class="card-title text-center"><b>Vinland Saga</b></h4>
+                        <p class="card-text"><ul>
+                          <li>Volume:114</li>
+                          <li>Volume:115</li>
+                          <li>Volume:117</li>
+                        </ul></p>
+                          <div class="rang">
+                            <a href="singlemanga/14" class="btn btn-primary">Read</a>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+    
+                <div class="col-md-4 clearfix d-none d-md-block">
+                  <div class="card mb-2">
+                    <img class="card-img-top" src="{% static 'images/home/demonslayer.jpg' %}"
+                      alt="Card image cap">
+                      <div class="card-body">
+                        <h4 class="card-title text-center"><b>Demon Slayer</b></h4>
+                        <p class="card-text"><ul>
+                          <li>Volume:298</li>
+                          <li>Volume:299</li>
+                          &nbsp;
+                        </ul></p>
+                          <div class="rang">
+                            <a href="singlemanga/7" class="btn btn-primary">Read</a>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+    
+                <div class="col-md-4 clearfix d-none d-md-block">
+                  <div class="card mb-2">
+                    <img class="card-img-top" src="{% static 'images/home/onepiece.jpg' %}"
+                      alt="Card image cap">
+                      <div class="card-body">
+                        <h4 class="card-title text-center"><b>One Piece</b></h4>
+                        <p class="card-text"><ul>
+                          &nbsp;
+                          <li>Volume:696</li>
+                          &nbsp;
+                        </ul></p>
+                          <div class="rang">
+                            <a href="singlemanga/2" class="btn btn-primary">Read</a>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+    
+            </div>
+            <!--/.Third slide-->
+          </div>
+          <!--/.Slides-->
+    
+        </div>
+
+        <div class="rang">
+          <h1 class="my-4"><b>Editor's Pick</b><br>
+          </h1>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <a href="singlemanga/14">
+              <img src="{% static 'images/home/editor1.jpg' %}" class="card-img" alt="...">
+          </a>
+          </div>
+
+          <div class="col-sm-6">
+            <a href="singlemanga/9">
+            <img src="{% static 'images/home/editor2.jpg' %}" class="card-img" alt="...">
+          </a>
+          </div>
+        </div>
+
+        <!--/.Carousel Wrapper-->
+        <!-- Page Features -->
+        <div class="rang">
+          <h1 class="my-4"><b>Trending Manga (24h)</b><br>
+          </h1>
+        </div>
+        <div class="row text-center">
+          <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card h-100">
+              <img class="card-img-top" src="{% static 'images/home/1.jpg' %}" alt="">
+              <div class="card-body">
+                <h4 class="card-title"><b>Boruto</b></h4>
+                <p class="card-text">Read the Adventure about naruto's son.</p>
+              </div>
+              <div class="card-footer">
+                <a href="singlemanga/3" class="btn btn-primary">Read</a>
+              </div>
+            </div>
+          </div>
+    
+          <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card h-100">
+              <img class="card-img-top" src="{% static 'images/home/2.png' %}" alt="">
+              <div class="card-body">
+                <h4 class="card-title"><b>One Piece</b></h4>
+                <p class="card-text">The Adventure to seek the world's greatest tresure.</p>
+              </div>
+              <div class="card-footer">
+                <a href="singlemanga/2" class="btn btn-primary">Read</a>
+              </div>
+            </div>
+          </div>
+    
+          <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card h-100">
+              <img class="card-img-top" src="{% static 'images/home/demon.jpg'%}" alt="">
+              <div class="card-body">
+                <h4 class="card-title"><b>Demon Slayer</b></h4>
+                <p class="card-text">The world where demon and demon slayer exists.</p>
+              </div>
+              <div class="card-footer">
+                <a href="singlemanga/7" class="btn btn-primary">Read</a>
+              </div>
+            </div>
+          </div>
+    
+          <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card h-100">
+              <img class="card-img-top" src="{% static 'images/home/drstone.jpg'%}" alt="">
+              <div class="card-body">
+                <h4 class="card-title"><b>Dr.Stone</b></h4>
+                <p class="card-text">The world got petrified in stone age.</p>
+              </div>
+              <div class="card-footer">
+                <a href="singlemanga/8" class="btn btn-primary">Read</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.row -->
+      <!-- /.container -->
+
+      </div>
+      </div>
+
+
+
+  
+            <!-- Footer -->
+      <footer>
+        <footer class="footer">
+            <div class="col-md-12">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-3 m-b-30">
+                <div class="footer-title m-t-5 m-b-20 p-b-8">
+                  About us
+                </div>
+                <p class="white-text">
+                  Manga Geek is a ad free manga reader Online for all the Manga Fans Out there.
+                </p>
+              </div>
+              <div class="col-md-3 m-b-30">
+                <div class="footer-title m-t-5 m-b-20 p-b-8">
+                  Popular
+                </div>
+                <div class="footer-links">
+                  <a href="singlemanga/1">
+                    Naruto
+                  </a>
+                  <a href="singlemanga/2">
+                    One Piece
+                  </a>
+                  <a href="singlemanga/6">
+                    Bleach
+                  </a>
+                  <a href="singlemanga/10">
+                    Hunter X Hunter
+                  </a>
+                </div>
+              </div>
+              <div class="col-md-3 m-b-30">
+                <div class="footer-title m-t-5 m-b-20 p-b-8">
+                  Quick Links
+                </div>
+                <div class="footer-links">
+                  <a href="/allmanga">
+                    All Manga
+                  </a>
+                  <a href="/manganews">
+                    News
+                  </a>
+                  <a href="/terms">
+                    Terms & conditions
+                  </a>
+                  <a href="/privacy">
+                    Privacy policy
+                  </a>
+                </div>
+              </div>
+              <div class="col-md-3 m-b-30">
+                <div class="footer-title m-t-5 m-b-20 p-b-8">
+                  Support
+                </div>
+                <div class="footer-links">
+                  <a href="/login">
+                    Login
+                  </a>
+                </div>
+                <div class="footer-links">
+                  <a href="/request">
+                    Request
+                  </a>
+                </div>
+                <div class="footer-links">
+                  <a href="/userrequested">
+                    User Project
+                  </a>
+                </div>
+
+                <div class="footer-social-links m-t-30">
+                  <li>
+                    <a href="https://www.facebook.com/" target="_blank">
+                      <i class="fa fa-facebook" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://twitter.com" target="_blank">
+                      <i class="fa fa-twitter" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://www.instagram.com/" target="_blank">
+                      <i class="fa fa-instagram" aria-hidden="true"></i>
+                    </a>
+                  </li>
+                </div>
+              </div>
+            </div>
+          </div>
+            </div>
+          </footer>
+        <div class="footer-bottom">
+          Copyright © 2020, All Rights Reserved
+        </div>
+            </div>
+        </div>
+      </div>
+      </footer>
+
+<script  src="{% static 'js/ajax.js'%}" type="text/javascript">
+
+    </script>
+</body>
+</html>
