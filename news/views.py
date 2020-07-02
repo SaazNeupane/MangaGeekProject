@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import News
 
 # Create your views here.
@@ -13,7 +13,7 @@ def show_news(request):
 
 
 def singlenews(request, id):
-    news = News.objects.all(id=id)
+    news = get_object_or_404(News, id=id)
     news_all = News.objects.all()
     return render(request, "berserknews.html", {'news_single': news, 'news_all': news_all})
 

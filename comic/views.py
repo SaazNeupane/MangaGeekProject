@@ -9,9 +9,10 @@ from django.template.loader import render_to_string
 from django.contrib import messages
 from tbluser.models import Tbluser
 
+
 def show_allmanga(request):
     qs = MangaFilterView(request)
-    comments = Comment.objects.all()
+    comments = Comment.objects.filter()
     genres = Genre.objects.all()
     context = {
         'queryset': qs,
@@ -23,7 +24,8 @@ def show_allmanga(request):
 
 def singlemanga(request, id):
     comic = get_object_or_404(Comic, id=id)
-    comrep = Comment.objects.all()
+    genres = Genre.objects.filter(comic=comic)
+    comrep = Comment.objects.filter(comic=comic)
     comments = Comment.objects.filter(comic=comic, reply=None).order_by('-id')
     is_liked = False
     if comic.likes.filter(id=request.user.id).exists():
@@ -49,6 +51,7 @@ def singlemanga(request, id):
     
     context = {
         'manga_single': comic,
+        'genres':genres,
         'is_liked': is_liked,
         'total_likes': comic.total_likes(),
         'comments': comments,

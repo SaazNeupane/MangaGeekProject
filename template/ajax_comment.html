@@ -1,6 +1,6 @@
 <div class="write-comment-section mt-3">
-    <button type="button" name="button" class="comment-btn btn btn-link btn-md mt-2 mb-2">{{ comrep.count }}
-        Comment{{comments|pluralize}}</button>
+    <button type="button" name="button" class="comment-btn btn btn-link btn-md mt-2 mb-2">{{ comrep.count }} Comment{{comments|pluralize}}
+    </button>
     <form method="POST" class="comment-form" action="{{ . }}">
         {% csrf_token %}
         {{ comment_form.as_p }}
@@ -21,8 +21,9 @@
                     <p class="mb-0">{{ comment.content }}</p>
                     <footer class="blockquote-footer">
                         by <cite title="Source Title">{{ comment.user|capfirst }}</cite> at {{ comment.timestamp }}
-                        <button type="button" name="button" class="reply-btn btn btn-link btn-sm ml-2">
-                            Show {{ comment.replies.count }} Repl{{ comment.replies.all|pluralize:"y,ies" }}</button>
+                            {{ comment.replies.count }} Repl{{ comment.replies.all|pluralize:"y,ies" }}
+                            <button type="button" name="button" class="reply-btn btn btn-link btn-sm ml-2">
+                                Reply</button>
                     </footer>
                 </blockquote>
 
