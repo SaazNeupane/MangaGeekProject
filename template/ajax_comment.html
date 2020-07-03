@@ -1,3 +1,4 @@
+{% load static %}
 <div class="write-comment-section mt-3">
     <button type="button" name="button" class="comment-btn btn btn-link btn-md mt-2 mb-2">{{ comrep.count }} Comment{{comments|pluralize}}
     </button>
@@ -18,19 +19,22 @@
         <div class="container-fluid">
             {% for comment in comments %}
                 <blockquote class="blockquote">
-                    <p class="mb-0">{{ comment.content }}</p>
+                    <p class="mb-0"><img src="{% static 'databaseimage/' %}{{ comment.user.tbluser.profilephoto }}" style="color: white;"
+                        width="35" height="35" class="rounded-circle"> {{ comment.content }}</p>
                     <footer class="blockquote-footer">
-                        by <cite title="Source Title">{{ comment.user|capfirst }}</cite> at {{ comment.timestamp }}
-                            {{ comment.replies.count }} Repl{{ comment.replies.all|pluralize:"y,ies" }}
+                        by <cite title="Source Title">                            
+                            {{ comment.user|capfirst }}</cite> at {{ comment.timestamp }}
+                            
                             <button type="button" name="button" class="reply-btn btn btn-link btn-sm ml-2">
-                                Reply</button>
+                                {{ comment.replies.count }} Repl{{ comment.replies.all|pluralize:"y,ies" }}</button>
                     </footer>
                 </blockquote>
 
                 <div class="replied-comments container mt-2 ml-2 mr-auto" style="display:none;">
                     {% for reply in comment.replies.all %}
                         <blockquote class="blockquote ml-3">
-                            <p class="mb-0">{{ reply.content }}</p>
+                            <p class="mb-0"><img src="{% static 'databaseimage/' %}{{ reply.user.tbluser.profilephoto }}"
+                                width="35" height="35" class="rounded-circle"> {{ reply.content }}</p>
                             <footer class="blockquote-footer">by <cite
                                     title="Source Title">{{ reply.user|capfirst }}</cite> at {{ reply.timestamp }}
                             </footer>

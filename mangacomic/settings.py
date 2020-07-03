@@ -160,3 +160,5 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
+
+AUTH_PROFILE_MODULE = 'tbluser.Tbluser'

@@ -48,21 +48,21 @@
             </li>
             {% if request.user.is_authenticated %}
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{user}} &nbsp; <img src="static/databaseimage/{{ user.tbluser.profilephoto }}" width="35" height="35"
-                  class="rounded-circle">
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"
-                style="background-color:rgb(95, 72, 228);">
-                <a style="color:white;" class="dropdown-item" href="/user">Dashboard</a>
-                <a style="color:white;" class="dropdown-item" href="/useredit">Edit Profile</a>
-                <a style="color:white;" class="dropdown-item " href="/userlogout">Log Out</a>
-              </div>
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{ user }} &nbsp; <img src="{% static 'databaseimage/' %}{{ user.tbluser.profilephoto }}"
+                        width="35" height="35" class="rounded-circle">
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"
+                    style="background-color:rgb(95, 72, 228);">
+                    <a style="color:white;" class="dropdown-item" href="/user">Dashboard</a>
+                    <a style="color:white;" class="dropdown-item" href="/useredit">Edit Profile</a>
+                    <a style="color:white;" class="dropdown-item " href="/userlogout">Log Out</a>
+                </div>
             </li>
             {% else %}
             <li class="nav-item">
-              <a class="nav-link " href="/login">Sign In</a>
+                <a class="nav-link " href="/login">Sign In</a>
             </li>
             {% endif %}
           </ul>
@@ -85,11 +85,11 @@
               {% csrf_token %}
               {% if request.user.is_authenticated %}
               <button class="btn-dark">
-              <i class="fa fa-plus" aria-hidden="true"></i>Wishlist
+                <i class="fa fa-plus" aria-hidden="true"></i>Wishlist
               </button>
               {% else %}
               <button class="btn-dark" disabled>
-              <i class="fa fa-plus" aria-hidden="true"></i>Wishlist
+                <i class="fa fa-plus" aria-hidden="true"></i>Wishlist
               </button>
 
               {% endif %}
@@ -164,32 +164,6 @@
   </div>
   <script src="{% static 'js/ajax.js'%}" type="text/javascript">
   </script>
-  <!-- <script type='text/javascript'>
-
-    $(document).ready(function (event) {
-      $(document).on('click', '#like', function (event) {
-        event.preventDefault();
-        var pk = $(this).attr('value');
-        $.ajax({
-          type: 'POST',
-          url: '/likes',
-          data: {
-            'id': pk,
-            'csrfmiddlewaretoken': '{{ csrf_token }}'
-          },
-          dataType: 'json',
-          success: function (response) {
-            $('#like-section').html(response['form'])
-            console.log($('#like-section').html(response['form']))
-          },
-          error: function (rs, e) {
-            console.log(rs.responseText);
-          },
-        });
-      })
-    });
-
-  </script> -->
 
 </body>
 
