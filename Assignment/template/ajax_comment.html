@@ -1,0 +1,61 @@
+{% load static %}
+<div class="write-comment-section mt-3">
+    <button type="button" name="button" class="comment-btn btn btn-link btn-md mt-2 mb-2">{{ comrep.count }} Comment{{comments|pluralize}}
+    </button>
+    <form method="POST" class="comment-form" action="{{ . }}">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        {% if request.user.is_authenticated %}
+            <input type="submit" value="Submit" class='btn btn-info'>
+        {% else %}
+            <input type="submit" value="Submit" class='btn btn-info' disabled>
+        {% endif %}
+    </form>
+</div>
+
+
+<div class="main-comments">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid">
+            {% for comment in comments %}
+                <blockquote class="blockquote">
+                    <p class="mb-0"><img src="{% static 'databaseimage/' %}{{ comment.user.tbluser.profilephoto }}" style="color: white;"
+                        width="35" height="35" class="rounded-circle"> {{ comment.content }}</p>
+                    <footer class="blockquote-footer">
+                        by <cite title="Source Title">                            
+                            {{ comment.user|capfirst }}</cite> at {{ comment.timestamp }}
+                            
+                            <button type="button" name="button" class="reply-btn btn btn-link btn-sm ml-2">
+                                {{ comment.replies.count }} Repl{{ comment.replies.all|pluralize:"y,ies" }}</button>
+                    </footer>
+                </blockquote>
+
+                <div class="replied-comments container mt-2 ml-2 mr-auto" style="display:none;">
+                    {% for reply in comment.replies.all %}
+                        <blockquote class="blockquote ml-3">
+                            <p class="mb-0"><img src="{% static 'databaseimage/' %}{{ reply.user.tbluser.profilephoto }}"
+                                width="35" height="35" class="rounded-circle"> {{ reply.content }}</p>
+                            <footer class="blockquote-footer">by <cite
+                                    title="Source Title">{{ reply.user|capfirst }}</cite> at {{ reply.timestamp }}
+                            </footer>
+                        </blockquote>
+                    {% endfor %}
+                    <div class="form-group row ml-3">
+                        <form method="POST" class="reply-form" action="{{ . }}">
+                            {% csrf_token %}
+                            <input type="hidden" name="comment_id" value="{{ comment.id }}">
+                            {{ comment_form.as_p }}
+                            {% if request.user.is_authenticated %}
+                                <input type="submit" value="Submit" class='btn btn-outline-success'>
+                            {% else %}
+                                <input type="submit" value="Submit" class='btn btn-outline-success' disabled>
+                            {% endif %}
+                        </form>
+                    </div>
+                </div>
+                <hr class="my-4" style="border-color: goldenrod;">
+            {% endfor %}
+        </div>
+    </div>
+</div>
+  
