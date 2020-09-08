@@ -1,0 +1,250 @@
+{% load static %}
+<html>
+    <head>
+        <title>Manga Geek</title>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="{% static 'Imp/css/bootstrap.min.css' %}" type="text/css"/>
+<!--        <script type="text/javascript" src="{% static 'js/jquery.slim.min.js' %}"></script>-->
+<!--        <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>-->
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.5.0.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="{% static 'Imp/js/bootstrap.bundle.min.js'%}"></script>
+        <link rel="stylesheet" type="text/css" href="{% static 'Css/main.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  </head>
+
+<body>
+<div class = "bg">
+      <!-- Navigation -->
+      <div class="navigationbar">
+        <nav class="navbar navbar-expand-lg fixed-top text-center">
+          <a class="navbar-brand" href="home">
+            <img src="{% static 'images/mg1.png' %}" height="40" alt="">
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fa fa-bars" style="color:rgb(95, 72, 228);"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="col-sm-7" id="nav-search" >
+              <form id="searchbar" class="navbar-form navbar-left my-2 my-lg-0 ml-auto" method="post">
+                {% csrf_token %}
+                <input type="text" class="form-control" id= "search" name="search" placeholder="Search Manga" autocomplete="off">
+              </form>
+              <ul class="list-group-item" id="search-results" hidden="true"> </ul>
+            </div>
+                    <ul class="navbar-nav mr-auto navbar-center">
+                        <!-- <li class="nav-item">
+                          <a class="nav-link" href="Home.html">Home</a>
+                        </li> -->
+                          <li class="nav-item">
+                            <a class="nav-link"  href="manganews">Manga News</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link " href="allmanga">All Manga</a>
+                          </li>
+                      {% if request.user.is_authenticated %}
+                           <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              {{user}} &nbsp; <img src="static/databaseimage/{{ user.tbluser.profilephoto }}" width="30" height="30" class="rounded-circle">
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                              <a class="dropdown-item" href="/user">Dashboard</a>
+                              <a class="dropdown-item" href="/useredit">Edit Profile</a>
+                              <a class="dropdown-item " href="/userlogout">Log Out</a>
+                            </div>
+                          </li>
+                      {% else %}
+                      <li class="nav-item">
+                            <a class="nav-link " href="/login">Sign In</a>
+                          </li>
+                      {% endif %}
+                     </ul>
+            </div>
+        </nav>
+        </div>
+      <!-- Page Content -->
+  <div class="container">
+        <!-- Jumbotron Header -->
+        <header class="jumbotron my-4">
+          <a class="logo" href="home.html">
+            <img src="{% static 'images/mg.png' %}" width="150" height="150" alt="logo" class="rounded mx-auto d-block">
+          </a>
+          <b class="lead"><h1><b>MANGAGEEK</b></h1><h2><b><u>Terms of Service</u></b></h2></b>
+
+             <h4><b> <u>Last Updated: April 17, 2019</u></b></h4>
+
+Noizer Limited dba NAB Studio, a limited company organized under the laws of Hong Kong (“NAB Studio,” “us,” “we,” or “our”) has created the  Manga Geek online software platform that makes available select comic books and related material (the “ Manga Geek Platform”) accessible via the  Manga Geek website located at www. Manga Geek.com (the “Website”) and through NAB Studio’s proprietary mobile application software made available on the iOS and Android platforms (the “ Manga Geek App”).<br>
+
+These Terms of Service (“Terms”) govern your (“you” or “your”) use of: (i) the  Manga Geek Platform and  Manga Geek Apps (which includes any and all underlying software and technology of the foregoing); (ii) the Website; and (iii) any other NAB Studio products or services made available by NAB Studio to you in connection with your use of the  Manga Geek Platform,  Manga Geek App and/or Website (the items described in clauses (i)-(iii) hereinafter individually and collectively referred to as, the “Service”).<br>
+
+<b>You must accept these terms to create an account for the Service and if you do not have an account you accept these terms by using and accessing the Website as set forth below in Section 1.1.  PLEASE NOTE, THESE TERMS ALSO CONTAIN AN AGREEMENT TO ARBITRATE IN SECTION 13 BELOW WHICH WILL REQUIRE YOU TO SUBMIT CLAIMS YOU HAVE AGAINST US TO BINDING AND FINAL ARBITRATION.</b><br>
+
+<b>IF YOU DO NOT AGREE TO ALL OF THE TERMS AND CONDITIONS SET FORTH IN THESE TERMS, OR IF YOU DO NOT HAVE AUTHORITY OR MEET THE ELIGIBILITY REQUIREMENTS AS SET FORTH IN SECTIONS 1.1 AND 1.2 BELOW, DO NOT CLICK “I ACCEPT,” DO NOT CREATE AN ACCOUNT, AND DO NOT USE THE  Manga Geek PLATFORM,  Manga Geek APP, OR WEBSITE.</b><br>
+
+    <b>Acceptance of Terms and Eligibility</b><br>
+
+    Acceptance of Terms.  These Terms set forth the legally binding terms and conditions for your use of the Service.  By using or accessing the Service in any manner, including, but not limited to, visiting or browsing the Website, you: (i) acknowledge that you have read, understand, and agree to be bound by these Terms, including NAB Studio’s privacy policy located at https:// Manga Geek.com/privacy (the “Privacy Policy”); (ii) represent that you have the authority to enter into the Terms (including the Privacy Policy and  all of the terms and conditions specified or reference below); (iii) represent that you are eligible to enter into the Terms pursuant to the eligibility requirements set forth below in Section 1.2; and (iv) agree that you are entering into these Terms (including all of the terms and conditions specified or reference below, including the Privacy Policy) with NAB Studio.  In addition, when using particular services or materials through or in connection with the Service, you shall be subject to any posted rules applicable to such services or materials that may contain terms and conditions or other operating rules, policies and procedures in addition to those in the terms (“Additional Terms”).  All such Additional Terms are hereby incorporated by reference into the Terms.
+    Eligibility.  You may use the Service if you are over eighteen (18) years of age and are not barred from receiving services under applicable law.  By accessing or using the Service you affirm that you are over the age of eighteen (18) and are fully able and competent to enter into the terms, conditions, obligations, affirmations, representations, and warranties set forth in the Terms, and to abide by and comply with the Terms.  If for any reason, we, in our sole discretion, believe you do not meet the eligibility requirements set forth above, we reserve the right, without provision of any notice to you to terminate your account and these Terms.  If you do not meet the eligibility requirements as set forth in this Section, we have no obligations to you under the Terms.
+
+    Changes to these Terms and the Service.  NAB Studio reserves the right, at any time, to change the terms and conditions of these Terms in its sole discretion including, but not limited to, the fees and charges associated with the use of the Service. If we do so, we will post the updated Terms of Service on the Website, however, we will notify you by email (to your designated email we have on file with your account, if any) of any changes that, in our sole discretion, materially impact these Terms.  All such changes will be effective when posted on the Website or emailed to you at the e-mail designated in your user account. You agree to review the Website periodically for changes. We reserve the right to change or discontinue the Service, in whole or in part, including without limitation, the Internet based services, pricing, technical support options, and other product-related policies. Your continued use of the Service after such changes are made to these Terms and are provided on the Website or emailed to you will indicate your acceptance to such changes.<br>
+    Access and Use of the Service
+    NAB Studio’s Rights<br>
+
+    Ownership.  NAB Studio and its suppliers retain all right, title and interest in and to (i) the Service, (ii) any and all software made available or a part of the Service, including, without limitation, the  Manga Geek Platform and  Manga Geek Apps, and any and all underlying technology thereto, and (iii) any text, graphics, images, music, software, audio, video, works of authorship of any kind, and information or other materials that are posted, generated, provided or otherwise made available through the Service, excluding your User Content (“NAB Studio Content”). NAB Studio reserves all rights and licenses not expressly granted to you in these Terms and no implied license is granted by NAB Studio. The NAB Studio Content, the Service and its underlying technology are protected by copyright, trademark, patent, intellectual property, and other laws of the United States and foreign countries. You agree not to remove, change or obscure any copyright, trademark, service mark or other proprietary rights notices incorporated in or accompanying the Service.
+    Feedback and Submissions.  NAB Studio shall be entitled to unrestricted use of any and all comments, suggestions, ideas, notes, drawings, concepts, problems or other information with respect to the Service or NAB Studio Content disclosed or offered by you to us (collectively, “Feedback”). We may use the Feedback for any and all purposes whatsoever, commercial or otherwise, without any payment or other obligation to you or any other person involved with the creation of the Feedback.
+
+    User Content<br>
+
+    User Content.  The Service may contain message boards, chat rooms, personal web pages or profiles, forums, bulletin boards, and other interactive features (collectively, “Interactive Services”) that allow users to post, submit, publish, display or transmit to other users or other persons (hereinafter, “post”) content or materials (collectively, “User Content”) on or through the Service.   All User Content must comply with the Content Standards set forth in Section 5.4 below.  Any User Content you post to the Service will be considered non-confidential and non-proprietary. By providing any User Content on or through the Service, you grant us and our affiliates and service providers, and each of their and our respective licensees, successors and assigns the right to use, reproduce, modify, perform, display, distribute and otherwise disclose to third parties any such material in connection with the Service.  Subject only to the limited license expressly granted herein, you shall retain all right, title and interest in and to the User Content and all intellectual property rights therein.
+    Responsibility for User Content. You are solely responsible for the User Content that you upload, publish, display, link to, or otherwise make available via the Service, and you agree that NAB Studio is only acting as a passive conduit for the online distribution and publication of the User Content. NAB Studio will not review, share, distribute, or reference any User Content except as provided herein, as provided in our Privacy policy and Copyright Policy, or as may be required by law. Notwithstanding the foregoing, NAB Studio retains the authority to remove any User Content uploaded or submitted through the Service that it deems in violation of this Agreement, at its sole discretion.
+    Representations and Warranties.  You represent and warrant that with respect to any User Content, submitted or provided by you in connection with the Service:<br>
+
+    Subscriptions; Support; Pricing & Payment Terms<br>
+
+    Subscriptions.  NAB Studio offers subscriptions to the Service (“Subscriptions”) which you may purchase by submitting a written online purchase order to NAB Studio.  Subscriptions shall automatically renew following the end of each Subscription term as set forth on the written purchase order, unless you provide NAB Studio written notice of non-renewal or termination prior to the expiration of your then-current Subscription. Subscriptions shall renew at NAB Studio’s then-current pricing for your then-existing Subscription. For more information regarding Subscriptions, including pricing, please see our Subscriptions page located here https:// Manga Geek.com/membership.
+    Payment Terms.  If you have purchased a Subscription, you shall pay to NAB Studio the fees specified in the written purchase order submitted by you to NAB Studio for your Subscription, in accordance with the payment terms specified therein.  All fees are non-refundable and non-returnable.  The fees are exclusive of all applicable sales, use, value-added and other taxes, or other similar charges, and you will be responsible for payment of all such taxes (other than taxes based on NAB Studio’s income), and any related penalties and interest, arising from the payment of the fees, the delivery of the Service, or performance of any services by NAB Studio.
+
+    Indemnity.  You will indemnify and hold harmless NAB Studio and its officers, directors, employees and agents, from and against any claims, disputes, demands, liabilities, damages, losses, and costs and expenses, including, without limitation, reasonable attorneys’ fees arising out of or in any way connected with (i) your access to or use of the Service, or (ii) your breach of any warranties made by you hereunder or your violation of any other provision of these Terms. We reserve the right to assume control of the defense of any third-party claim that is subject to indemnification by you, in which event you will cooperate with us in asserting any available defenses.
+
+    Termination.  You may cancel your account at any time in your Account details page on our website.  We reserve the right to deactivate your account or terminate your access to the Service, or any part thereof, and these Terms, at our sole discretion, at any time and without notice or liability to you if you violate these Terms. Upon any such termination, we may delete your data and any other information related to your account.  The following Sections shall survive any termination or expiration of these Terms: 1, 2, 3.3, 3.4, 3.5, 4, 5, 6.2, 7, 8, 9, 10, 11, 12, 13 and 14.
+    Disclaimers<br>
+
+    Limitation of Liability<br>
+
+    Application of Limitations and Disclaimers to Consumers.  Certain states and/or jurisdictions do not allow the exclusion of implied warranties or limitation of liability for incidental or consequential damages with respect to consumers (i.e., a person acquiring goods otherwise than in the course of a business), so the exclusions set forth in the Sections 9 and 10 above may not apply to you if you are a consumer. The limitations or exclusions of warranties and liability contained in these Terms do not affect or prejudice the statutory rights of a consumer.  The limitations or exclusions of warranties and remedies contained in these Terms shall apply to a consumer only to the extent such limitations or exclusions and remedies are permitted under the laws of the jurisdiction where such consumer is located.
+
+    Availability of the Service. Information describing the Service is accessible worldwide but this does not mean the Service or certain portions thereof are available in your country. We may restrict access to the Service or portions thereof in certain countries. It is your responsibility to make sure that your use of the Service is legal in your country of residence. The Service may not be available in all languages. If at our reasonable determination, you use the Service or any other material or services provided by us to you under these Terms in a manner that violates laws, or creates an excessive burden or potential adverse impact on our systems, in addition to any of its other rights or remedies, we may, without liability to us, immediately suspend or terminate your access to the Service.
+    Governing Law and Dispute Resolution<br>
+
+    Question or Additional Information.  If you have any questions regarding these Terms, please send an email to support@ Manga Geek.com.
+
+Attn: Manga Rock team<br>
+
+
+
+ Manga Geek Copyright Policy
+
+This Copyright Policy is incorporated into and made a part of the  Manga Geek Terms of Service located at https:// Manga Geek.com/term (the “Terms”).  Any capitalized terms used herein and not defined shall have the meanings given to such term in the Terms.
+
+Noizer Limited dba NAB Studio, a limited company organized under the laws of Hong Kong (“NAB Studio,” “us,” “we,” or “our”) takes claims of copyright infringement seriously. We will respond to notices of alleged copyright infringement that comply with applicable law. If you believe any materials accessible on or through the Service infringe your copyright, you may request removal of those materials (or access to them) from the Service by submitting written notification to our Copyright Agent (designated below).
+
+Reporting Claims of Copyright Infringement
+
+In accordance with the Online Copyright Infringement Liability Limitation Act of the Digital Millennium Copyright Act (17 U.S.C. § 512) (“DMCA”), the written notice (the “DMCA Notice”) must include substantially the following:
+
+    Your physical or electronic signature.
+    Identification of the copyrighted work you believe to have been infringed or, if the claim involves multiple works on the Service, a representative list of such works.
+    Identification of the material you believe to be infringing in a sufficiently precise manner to allow us to locate that material.
+    Adequate information by which we can contact you (including your name, postal address, telephone number and, if available, e-mail address).
+    A statement that you have a good faith belief that use of the copyrighted material is not authorized by the copyright owner, its agent or the law.
+    A statement that the information in the written notice is accurate.
+    A statement, under penalty of perjury, that you are authorized to act on behalf of the copyright owner.<br>
+        </header>
+        </div>
+<script  src="{% static 'js/ajax.js'%}" type="text/javascript"></script>
+  </body>
+
+
+            <!-- Footer -->
+      <footer>
+        <footer class="footer">
+            <div class="col-md-12">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-3 m-b-30">
+                <div class="footer-title m-t-5 m-b-20 p-b-8">
+                  About us
+                </div>
+                <p class="white-text">
+                  Manga Geek is a ad free manga reader Online for all the Manga Fans Out there.
+                </p>
+              </div>
+              <div class="col-md-3 m-b-30">
+                <div class="footer-title m-t-5 m-b-20 p-b-8">
+                  Popular
+                </div>
+                <div class="footer-links">
+                  <a href="singlemanga/14">
+                    Vinland Saga
+                  </a>
+                  <a href="singlemanga/2">
+                    One Piece
+                  </a>
+                  <a href="singlemanga/6">
+                    Bleach
+                  </a>
+                  <a href="singlemanga/10">
+                    Hunter X Hunter
+                  </a>
+                </div>
+              </div>
+              <div class="col-md-3 m-b-30">
+                <div class="footer-title m-t-5 m-b-20 p-b-8">
+                  Quick Links
+                </div>
+                <div class="footer-links">
+                  <a href="/allmanga">
+                    All Manga
+                  </a>
+                  <a href="/manganews">
+                    News
+                  </a>
+                  <a href="/terms">
+                    Terms & conditions
+                  </a>
+                  <a href="/privacy">
+                    Privacy policy
+                  </a>
+                </div>
+              </div>
+              <div class="col-md-3 m-b-30">
+                <div class="footer-title m-t-5 m-b-20 p-b-8">
+                  Support
+                </div>
+                <div class="footer-links">
+                  {% if request.user.is_authenticated %}
+                  <a href="/userlogout"> Logout </a>
+                  {% else %}
+                  <a href="/login">
+                    Login
+                    {% endif %}
+                  </a>
+                </div>
+                <div class="footer-links">
+                  <a href="/request">
+                    Request
+                  </a>
+                </div>
+                <div class="footer-links">
+                  <a href="/userrequested">
+                    User Project
+                  </a>
+                </div>
+
+                <div class="footer-social-links m-t-30">
+                  <li>
+                    <a href="https://www.facebook.com/" target="_blank">
+                      <i class="fa fa-facebook" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://twitter.com" target="_blank">
+                      <i class="fa fa-twitter" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://www.instagram.com/" target="_blank">
+                      <i class="fa fa-instagram" aria-hidden="true"></i>
+                    </a>
+                  </li>
+                </div>
+              </div>
+            </div>
+          </div>
+            </div>
+          </footer>
+        <div class="footer-bottom">
+          Copyright © 2020, All Rights Reserved
+        </div>
+            </div>
+        </div>
+      </div>
+      </footer>
+      </html>

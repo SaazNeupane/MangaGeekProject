@@ -1,0 +1,133 @@
+{% load static %}
+
+<html>
+    <head>
+        <title>Manga Geek</title>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="{% static 'Imp/css/bootstrap.min.css' %}" type="text/css"/>
+<!--        <script type="text/javascript" src="{% static 'js/jquery.slim.min.js' %}"></script>-->
+<!--        <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>-->
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.5.0.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="{% static 'Imp/js/bootstrap.bundle.min.js'%}"></script>
+<!--        <link rel="stylesheet" type="text/css" href="{% static 'Css/main.css' %}">-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+        body{
+            font-family: Ubuntu !important;}
+                        /* start  */
+            .saaz .carousel-item {
+                height: 100vh;
+                min-height: 350px;
+                background: no-repeat center center scroll;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+                overflow: hidden;
+              }
+              #search-Form {
+                position: fixed;
+                top: 45%;
+                left: 25%;
+                z-index: 1;
+                justify-content: center;
+                width:50.5%;
+              }
+
+              form.searchbar{
+                width: 105.6%;
+            }
+
+               ul#search-results
+              {
+                display: flow-root;
+                position: fixed;
+                width: 50.5%;
+                max-height: 200px;
+                overflow: auto;
+                background: rgb(95, 72, 228);
+              }
+
+              li.list-group-item{
+              background-color:snow !important;
+              text-align: initial;
+              }
+
+              a.undefined{
+                color:rgb(95, 72, 228) !important;
+                font-size: large;
+              }
+
+              img.search{
+                max-width: 70px;
+              }
+        </style>
+  </head>
+
+  <body>
+    <div class=saaz>
+        <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+          </ol>
+          <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active" style="background-image: url('{% static 'images/welcome2.jpg' %}')">
+              <div class="carousel-caption d-md-block">
+                <h1 class="display-2"><b>Welcome</b></h1>
+                <p class="lead">Welcome to Manga Geek</p>
+              </div>
+            </div>
+
+            <div class="carousel-item" style="background-image: url('{% static 'images/welcome.jpg' %}')">
+              <div class="carousel-caption d-md-block">
+                <h2 class="display-4">About Us</h2>
+                <p class="lead">We Provide you latest Manga Ads Free.</p>
+              </div>
+            </div>
+
+            <div class="carousel-item" style="background-image: url('{% static 'images/welcome3.jpg' %}')">
+              <div class="carousel-caption d-md-block">
+                <h2 class="display-4">Friendly</h2>
+                <p class="lead">Very Easy and Friendly to use.</p>
+              </div>
+            </div>
+          </div>
+            <div class="container">
+            <div class="row">
+              <div class="col-lg-12 col-md-12 col-sm-7">
+                <div class="search-group">
+                  <form id="search-Form" method="post">
+                      {% csrf_token %}
+                    <div class="form-group">
+                      <div class="input-group input-group-lg center-block">
+                        <input type="text" class="form-control" id="search" name="search" placeholder="Search" autocomplete="off">
+                      </div>
+                        <ul class="list-group-item" id="search-results" hidden="true">
+                        </ul>
+                    </div>
+                    <a href="allmanga" class="btn btn-primary">All Manga</a> <a href="home" class="btn btn-primary">Home</a>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <!-- <span class="carousel-control-prev-icon" aria-hidden="true"></span> -->
+                <span class="sr-only">Previous</span>
+              </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <!-- <span class="carousel-control-next-icon" aria-hidden="true"></span> -->
+                <span class="sr-only">Next</span>
+              </a>
+        </div>
+      </div>
+
+      <script  src="{% static 'js/ajax.js'%}" type="text/javascript"> </script>
+      </body>
+      </html>

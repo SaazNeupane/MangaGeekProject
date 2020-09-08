@@ -1,0 +1,5 @@
+{% for wishes in wishlist %}
+                <a href="{{comic.get_absolute_url }}">
+                  Wishes: {{ wishes.wished_comic }}
+                </a>
+                {% endfor %}

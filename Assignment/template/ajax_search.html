@@ -1,0 +1,17 @@
+{% load static %}
+{% if mangas.count > 0 %}
+
+{% for manga in mangas %}
+    <li class = "list-group-item">
+        <a class= "undefined" href="singlemanga/{{ manga.id }}">
+            <img class="img-fluid search" src="{% static 'databaseimage/' %}{{ manga.coverphoto }}" alt="">
+            {{ manga.title}}, {{ manga.author.name}}</a>
+
+    </li>
+{% endfor %}
+
+{% else %}
+
+<li class = "list-group-item"> <a class="undefined" >None to show!</a></li>
+
+{% endif %}
